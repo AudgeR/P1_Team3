@@ -1,16 +1,15 @@
 package com.model;
 
 public class Employee {
-	private int userId;
-	private String username, password, firstName, lastName, isAdmin;
+	private String userId, username, password, firstName, lastName, isAdmin;
 	
 	public Employee() {
 	}
 
-	public Employee(int userID, String username, String password, String firstName, String lastName,
+	public Employee(String userId, String username, String password, String firstName, String lastName,
 			String isAdmin) {
 		super();
-		this.userId = userID;
+		this.userId = userId;
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -18,12 +17,12 @@ public class Employee {
 		this.isAdmin = isAdmin;
 	}
 
-	public int getUserID() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserID(int userID) {
-		this.userId = userID;
+	public void setUserID(String userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {
@@ -68,7 +67,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [userID=" + userId + ", username=" + username + ", password=" + password + ", firstName="
+		return "Employee [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", isAdmin=" + isAdmin + "]";
 	}
 	

@@ -12,7 +12,7 @@ public class MasterServlet extends HttpServlet{
 	 */
 	private static final long serialVersionUID = -3005050953301107342L;
 
-	@Override // We might not need this method.
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		

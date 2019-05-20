@@ -22,7 +22,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 	public void insertEmployee(Employee e) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement("INSERT INTO employees VALUES(?,?,?,?,?,?)");
-			ps.setInt(1, e.getUserID());
+			ps.setString(1, e.getUserId());
 			ps.setString(2, e.getUsername());
 			ps.setString(3, e.getPassword());
 			ps.setString(4, e.getFirstName());
@@ -45,7 +45,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				e = new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+				e = new Employee(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
 						rs.getString(5), rs.getString(6));
 			}
 			
@@ -63,7 +63,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				employees.add(new Employee(rs.getInt(1), rs.getString(2), rs.getString(3), 
+				employees.add(new Employee(rs.getString(1), rs.getString(2), rs.getString(3), 
 						rs.getString(4), rs.getString(5), rs.getString(6)));
 			}
 			
@@ -82,7 +82,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 			ps.setString(2, e.getPassword());
 			ps.setString(3, e.getFirstName());
 			ps.setString(4, e.getLastName());
-			ps.setInt(5, e.getUserID());
+			ps.setString(5, e.getUserId());
 			ps.executeUpdate();
 			
 		} catch (SQLException exc) {
@@ -94,7 +94,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 	public void deleteEmployee(Employee e) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement("DELETE FROM employees WHERE user_id=?");
-			ps.setInt(1, e.getUserID());
+			ps.setString(1, e.getUserId());
 			ps.executeUpdate();
 			
 		} catch (SQLException exc) {

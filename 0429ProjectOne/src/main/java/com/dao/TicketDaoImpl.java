@@ -29,7 +29,7 @@ public class TicketDaoImpl implements TicketDao {
 			ps.setString(5,  t.getDateResolved());
 			ps.setString(6,  t.getStatus());
 			ps.setString(7,  t.getDescription());
-			ps.setInt(8, t.getUserId());
+			ps.setString(8, t.getUserId());
 			ps.executeUpdate();
 			
 		} catch (SQLException exc) {
@@ -39,34 +39,36 @@ public class TicketDaoImpl implements TicketDao {
 
 	@Override
 	public Ticket selectTicket(int ticketId) {
-        Ticket t = null;
-		
-		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM tickets WHERE ticket_id=?");
-			ps.setInt(1, ticketId);
-			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				t = new Ticket(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8));
-			}
-			
-		} catch (SQLException exc) {
-			exc.printStackTrace();
-		}
-		return t;
+//        Ticket t = null;
+//		
+//		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+//			PreparedStatement ps = conn.prepareStatement("SELECT * FROM tickets WHERE ticket_id=?");
+//			ps.setInt(1, ticketId);
+//			ResultSet rs = ps.executeQuery();
+//			
+//			while(rs.next()) {
+//				t = new Ticket(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+//						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+//			}
+//			
+//		} catch (SQLException exc) {
+//			exc.printStackTrace();
+//		}
+		return null;
 	}
 
 	@Override
 	public List<Ticket> selectAllTickets() {
-		List<Ticket> tickets = new ArrayList<>();
+		List<Ticket> tickets = new ArrayList<Ticket>();
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM tickets");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM tickets LEFT JOIN employees " + 
+					                                     "ON tickets.user_id = employees.user_id");
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
 				tickets.add(new Ticket(rs.getString(1), rs.getString(2), rs.getString(3), 
-						rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8)));
+						rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+						rs.getString(12), rs.getString(13)));
 			}
 			
 		} catch (SQLException exc) {

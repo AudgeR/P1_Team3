@@ -15,9 +15,12 @@ public class EmployeeController {
 		String dateSubmitted = "15-MAY-19"; // Implement current date
 		String status = "Pending";
 		String description = request.getParameter("Description");
-		int userID = e.getUserID();
+		String userId = e.getUserId();
+		String firstName = e.getFirstName();
+		String lastName = e.getLastName();
 
-		Ticket t = new Ticket(null, type, amount, dateSubmitted, "", status, description, userID);
+		Ticket t = new Ticket(null, type, amount, dateSubmitted, "", status, description, userId, firstName,
+				              lastName);
 		
 		tImpl.insertTicket(t);	
 

@@ -1,14 +1,15 @@
 package com.model;
 
 public class Ticket {
-	private int userId;
-	private String ticketId, ticketType, amount, dateSubmitted, dateResolved, status, description;
+	private String ticketId, ticketType, amount, dateSubmitted, dateResolved, status, description, userId,
+	               firstName, lastName;
 	
 	public Ticket() {
 	}
 
 	public Ticket(String ticketId, String ticketType, String amount, String dateSubmitted, 
-			String dateResolved, String status,String description, int userId) {
+			String dateResolved, String status,String description, String userId, String firstName,
+			String lastName) {
 		super();
 		this.ticketId = ticketId;
 		this.ticketType = ticketType;
@@ -18,6 +19,8 @@ public class Ticket {
 		this.status = status;
 		this.description = description;
 		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 
 	public String getTicketId() {
@@ -76,20 +79,35 @@ public class Ticket {
 		this.description = description;
 	}
 	
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 	
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	@Override
 	public String toString() {
-		return "Ticket [ticketId=" + ticketId + ", ticketType=" + ticketType + 
-			   ", amount=" + amount + ", dateSubmitted=" + dateSubmitted + 
-			   ", dateResolved=" + dateResolved + ", status=" + status + 
-			   ", description=" + description + ",userId=" + userId + "]";
+		return "Ticket [ticketId=" + ticketId + ", ticketType=" + ticketType + ", amount=" + amount + ", dateSubmitted="
+				+ dateSubmitted + ", dateResolved=" + dateResolved + ", status=" + status + ", description="
+				+ description + ", userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 	
 	
